@@ -24,37 +24,37 @@ function axelerant_assignment_help($route_name, RouteMatchInterface $route_match
  */
 function axelerant_assignment_form_system_site_information_settings_alter(&$form, FormStateInterface $form_state, $form_id) {
   $site_config = Drupal::config('system.site');
-  $form['site_api'] = [
-    '#type' => 'details',
-    '#title' => t('Site API Details'),
-    '#open' => TRUE,
-  ];
-  
-  $default_value = \Drupal::configFactory()->getEditable('system.site')->get('siteapikey');
-  
-  $form['site_api']['siteapikey'] = [
-    '#type' => 'textfield',
-    '#title' => t('Site API Key'),
-    '#default_value' => $default_value,
-    '#size' => 60,
-    '#description' => t("The <em>From</em> stores the site API key"),
-    '#attributes' => array(
+	$form['site_api'] = [
+		'#type' => 'details',
+		'#title' => t('Site API Details'),
+		'#open' => TRUE,
+	];
+	
+	$default_value = \Drupal::configFactory()->getEditable('system.site')->get('siteapikey');
+	
+	$form['site_api']['siteapikey'] = [
+		'#type' => 'textfield',
+		'#title' => t('Site API Key'),
+		'#default_value' => $default_value,
+		'#size' => 60,
+		'#description' => t("The <em>From</em> stores the site API key"),
+		'#attributes' => array(
        'placeholder' => t('No API Key yet'),
      ),
-  ];
-  
-  $form['actions']['submit']['#value'] = t('Update Configuration');
-  $form['#submit'][] = 'axelerant_assignment_system_site_information_settings_form_submit';
+	];
+	
+	$form['actions']['submit']['#value'] = t('Update Configuration');
+	$form['#submit'][] = 'axelerant_assignment_system_site_information_settings_form_submit';
 }
 
 /**
  * Implements custom submit handler.
  */
 function axelerant_assignment_system_site_information_settings_form_submit(&$form, FormStateInterface $form_state) {
-  \Drupal::configFactory()->getEditable('system.site')
+	\Drupal::configFactory()->getEditable('system.site')
     ->set('siteapikey', $form_state->getValue('siteapikey'))
     ->save();
-  
-  $site_api_value = ($form_state->getValue('siteapikey')) ? $form_state->getValue('siteapikey') : 'blank';
-  \Drupal::messenger()->addMessage(t('Site API Key has been saved with %siteapikey value.', ['%siteapikey' => $site_api_value]));
+	
+	$site_api_value = ($form_state->getValue('siteapikey')) ? $form_state->getValue('siteapikey') : 'blank';
+	\Drupal::messenger()->addMessage(t('Site API Key has been saved with %siteapikey value.', ['%siteapikey' => $site_api_value]));
 }
