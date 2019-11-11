@@ -34,7 +34,7 @@ class pageJsonController extends ControllerBase {
     );
   }
   /**
-   * Calculate and return sortest path between two cities.
+   * Return JSON response of a node.
    *
    * @param string $api_key
    *   API Key from system config.
