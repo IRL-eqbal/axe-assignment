@@ -1,0 +1,11 @@
+axelerant_assignment.page_json_controller:
+  path: 'page_json/{api_key}/{node}'
+  defaults:
+    _controller: '\Drupal\axelerant_assignment\Controller\pageJsonController::pageJson'
+    _title: 'Responds with a JSON representation of a given node with the content type "page"'
+  requirements:
+    _permission: 'access content'
+  options:
+    parameters:
+      node:
+        type: entity:node

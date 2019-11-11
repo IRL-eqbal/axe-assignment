@@ -1,0 +1,5 @@
+name: 'axelerant_assignment'
+type: module
+description: 'Modify Site information form and add API key. Implement a custom route to get json response'
+core: 8.x
+package: 'Custom'
