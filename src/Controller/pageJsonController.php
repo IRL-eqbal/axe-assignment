@@ -20,20 +20,20 @@ class pageJsonController extends ControllerBase {
    *   Return Hello string.
    */
   public function pageJson($api_key, NodeInterface $node) {
-		$allowed = false;
-		$site_api_key = $this->config('system.site')->get('siteapikey');
-		
-		if ($node->getType() == 'page' && $api_key == $site_api_key) {
-			$allowed = true;
-		}
-		
-		if ($allowed) {
-			return new JsonResponse($node->toArray(), 200, ['Content-Type' => 'application/json']);
-		}
-		else{
-			return new JsonResponse(["error" => "access denied"], 401, ['Content-Type' => 'application/json']);
-		}
-	}
-	
-	
+    $allowed = false;
+    $site_api_key = $this->config('system.site')->get('siteapikey');
+    
+    if ($node->getType() == 'page' && $api_key == $site_api_key) {
+      $allowed = true;
+    }
+    
+    if ($allowed) {
+      return new JsonResponse($node->toArray(), 200, ['Content-Type' => 'application/json']);
+    }
+    else{
+      return new JsonResponse(["error" => "access denied"], 401, ['Content-Type' => 'application/json']);
+    }
+  }
+  
+  
 }
